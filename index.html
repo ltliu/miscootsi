@@ -8,8 +8,8 @@
     <style>
         :root {
             --primary-blue: #64a6bd;
-            --bg-gray: #f4f4f4;
-            --form-bg: #e0e0e0;
+            --bg-gray: #f9f9f9;
+            --input-bg: #ffffff;
             --text-dark: #1a1a1a;
         }
 
@@ -19,20 +19,20 @@
             font-family: 'Inter', sans-serif;
             color: var(--text-dark);
             background-color: #fff;
+            line-height: 1.6;
         }
 
         /* --- Hero & Form Section --- */
         .hero-container {
             display: flex;
-            flex-wrap: wrap;
-            min-height: 80vh;
+            flex-direction: row;
+            min-height: 90vh;
             background: url('https://via.placeholder.com/1200x800') center/cover no-repeat;
-            position: relative;
         }
 
         .hero-overlay {
             flex: 1;
-            background: rgba(0,0,0,0.2);
+            background: rgba(0,0,0,0.15);
             display: flex;
             flex-direction: column;
             justify-content: center;
@@ -44,93 +44,95 @@
 
         .hero-overlay h1 {
             font-family: 'Pacifico', cursive;
-            font-size: 5rem;
+            font-size: clamp(3.5rem, 8vw, 6rem);
             margin: 0;
-            text-shadow: 2px 2px 10px rgba(0,0,0,0.3);
+            text-shadow: 2px 2px 15px rgba(0,0,0,0.4);
         }
 
         .hero-overlay p {
             font-family: 'Bebas Neue', sans-serif;
-            font-size: 1.8rem;
-            letter-spacing: 3px;
-            margin-top: 10px;
+            font-size: clamp(1.2rem, 3vw, 1.8rem);
+            letter-spacing: 4px;
+            margin-top: 15px;
             border-top: 2px solid white;
             padding-top: 10px;
         }
 
         .form-sidebar {
-            width: 400px;
+            width: 420px;
             background: white;
-            padding: 40px;
+            padding: 60px 40px;
             display: flex;
             flex-direction: column;
+            justify-content: center;
+            box-shadow: -5px 0 15px rgba(0,0,0,0.05);
         }
 
         .form-sidebar h2 {
             font-family: 'Bebas Neue', sans-serif;
-            font-size: 1.5rem;
+            font-size: 2rem;
+            margin-bottom: 25px;
+            color: var(--primary-blue);
+        }
+
+        .form-group {
             margin-bottom: 20px;
         }
 
         label {
             font-family: 'Bebas Neue', sans-serif;
-            font-size: 0.8rem;
-            margin-bottom: 5px;
-            display: block;
-        }
-
-        input[type="text"], input[type="email"], input[type="date"] {
-            width: 100%;
-            padding: 10px;
-            margin-bottom: 15px;
-            border: 1px solid #ccc;
-            border-radius: 4px;
-            box-sizing: border-box;
-        }
-
-        .event-type-box {
-            background: var(--form-bg);
-            padding: 15px;
-            margin-bottom: 10px;
-            border-radius: 4px;
-            display: flex;
-            align-items: center;
-            font-family: 'Bebas Neue', sans-serif;
             font-size: 0.9rem;
-            cursor: pointer;
+            margin-bottom: 6px;
+            display: block;
+            letter-spacing: 1px;
         }
 
-        .event-type-box input { margin-right: 15px; }
+        input[type="text"], 
+        input[type="email"], 
+        input[type="date"], 
+        select {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #ddd;
+            border-radius: 0px;
+            font-family: 'Inter', sans-serif;
+            font-size: 1rem;
+            box-sizing: border-box;
+            background-color: var(--input-bg);
+        }
 
         .submit-btn {
             background-color: var(--primary-blue);
             color: white;
             border: none;
-            padding: 15px;
+            padding: 18px;
             font-family: 'Bebas Neue', sans-serif;
-            font-size: 1.2rem;
+            font-size: 1.4rem;
+            letter-spacing: 2px;
             cursor: pointer;
             width: 100%;
             margin-top: 10px;
-            transition: 0.3s;
+            transition: background 0.3s ease;
         }
 
-        .submit-btn:hover { opacity: 0.8; }
+        .submit-btn:hover { background-color: #4e8a9e; }
 
         /* --- Gallery Section --- */
         .gallery-section {
-            max-width: 1000px;
-            margin: 80px auto;
+            max-width: 1100px;
+            margin: 60px auto;
             padding: 0 20px;
         }
 
         .main-img {
             width: 100%;
-            height: 400px;
-            background: #e0e0e0;
-            border: 10px solid var(--primary-blue);
+            height: auto;
+            aspect-ratio: 16/9;
+            background: #eee;
+            border: 12px solid var(--primary-blue);
             margin-bottom: 20px;
             object-fit: cover;
+            box-sizing: border-box;
         }
 
         .grid-3 {
@@ -141,38 +143,65 @@
 
         .grid-img {
             width: 100%;
-            height: 250px;
-            background: #e0e0e0;
+            aspect-ratio: 1/1;
+            background: #eee;
             border: 8px solid var(--primary-blue);
             object-fit: cover;
+            box-sizing: border-box;
         }
 
         /* --- Info Section --- */
         .info-section {
             text-align: center;
-            padding: 100px 20px;
-            background-color: #fafafa;
+            padding: 80px 20px;
+            background-color: var(--bg-gray);
         }
 
         .info-section h2 {
             font-family: 'Pacifico', cursive;
-            font-size: 3rem;
-            margin-bottom: 40px;
+            font-size: 3.5rem;
+            margin-bottom: 30px;
         }
 
         .info-content {
-            max-width: 700px;
+            max-width: 800px;
             margin: 0 auto;
             font-family: 'Bebas Neue', sans-serif;
-            font-size: 1.4rem;
-            line-height: 1.6;
-            color: #333;
+            font-size: 1.5rem;
+            line-height: 1.4;
+            color: #444;
         }
 
-        /* Responsive */
+        /* --- Footer --- */
+        footer {
+            background-color: white;
+            padding: 60px 20px;
+            text-align: center;
+            border-top: 1px solid #eee;
+        }
+
+        .footer-links {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 1.2rem;
+            letter-spacing: 1px;
+        }
+
+        .footer-links a {
+            color: var(--primary-blue);
+            text-decoration: none;
+            margin: 0 15px;
+        }
+
+        .footer-links a:hover { text-decoration: underline; }
+
+        /* --- Responsive Design --- */
         @media (max-width: 900px) {
-            .form-sidebar { width: 100%; }
+            .hero-container { flex-direction: column; }
+            .form-sidebar { width: 100%; box-sizing: border-box; padding: 40px 20px; }
             .grid-3 { grid-template-columns: 1fr; }
+            .hero-overlay { min-height: 400px; }
+            .main-img { border-width: 6px; }
+            .grid-img { border-width: 6px; }
         }
     </style>
 </head>
@@ -186,33 +215,46 @@
 
         <div class="form-sidebar">
             <h2>BOOK MISCOOTSI</h2>
-            <form>
-                <label>NAME</label>
-                <input type="text" placeholder="Your Name">
+            <form action="https://formspree.io/f/xpqovgkp" method="POST">
+                <div class="form-group">
+                    <label>NAME</label>
+                    <input type="text" name="full_name" placeholder="Full Name" required>
+                </div>
                 
-                <label>EMAIL ADDRESS</label>
-                <input type="email" placeholder="Your Email">
+                <div class="form-group">
+                    <label>EMAIL ADDRESS</label>
+                    <input type="email" name="email" placeholder="Email@example.com" required>
+                </div>
                 
-                <label>RENTAL DATE(S)</label>
-                <input type="date">
+                <div class="form-group">
+                    <label>RENTAL DATE(S)</label>
+                    <input type="date" name="rental_date" required>
+                </div>
 
-                <label>EVENT TYPE</label>
-                <div class="event-type-box"><input type="checkbox"> CATERING</div>
-                <div class="event-type-box"><input type="checkbox"> BRAND ACTIVATION</div>
-                <div class="event-type-box"><input type="checkbox"> PRODUCT SALES</div>
-                <div class="event-type-box"><input type="checkbox"> PRIVATE EVENT</div>
+                <div class="form-group">
+                    <label>EVENT TYPE</label>
+                    <select name="event_type" required>
+                        <option value="" disabled selected>Select an option...</option>
+                        <option value="Catering">Catering</option>
+                        <option value="Brand Activation">Brand Activation</option>
+                        <option value="Product Sales">Product Sales</option>
+                        <option value="Private Event">Private Event</option>
+                    </select>
+                </div>
 
-                <button type="submit" class="submit-btn">SUBMIT</button>
+                <input type="text" name="_gotcha" style="display:none">
+
+                <button type="submit" class="submit-btn">SEND REQUEST</button>
             </form>
         </div>
     </section>
 
     <section class="gallery-section">
-        <img src="https://via.placeholder.com/1000x400" alt="Featured Ape" class="main-img">
+        <img src="https://via.placeholder.com/1000x560" alt="Miscootsi Main" class="main-img">
         <div class="grid-3">
-            <img src="https://via.placeholder.com/300" alt="Ape Detail 1" class="grid-img">
-            <img src="https://via.placeholder.com/300" alt="Ape Detail 2" class="grid-img">
-            <img src="https://via.placeholder.com/300" alt="Ape Detail 3" class="grid-img">
+            <img src="https://via.placeholder.com/400" alt="Detail 1" class="grid-img">
+            <img src="https://via.placeholder.com/400" alt="Detail 2" class="grid-img">
+            <img src="https://via.placeholder.com/400" alt="Detail 3" class="grid-img">
         </div>
     </section>
 
@@ -220,10 +262,18 @@
         <h2>Book Miscootsi.</h2>
         <div class="info-content">
             <p>MISCOOTSI IS A VINTAGE 19XX PIAGGIO APE. APE MEANS BEE IN ITALIAN—BECAUSE THESE LITTLE TRUCKS CAN BE PUT TO WORK. LOVINGLY RESTORED AND CONVERTED TO ELECTRIC, MISCOOTSI IS READY TO SCOOT INTO YOUR NEXT EVENT.</p>
-            <p>ROAD-LEGAL, MISCOOTSI CAN BE DELIVERED TO YOU OR ROCK UP TO YOUR EVENT. OUTFITTED WITH BATTERY POWER, STORAGE, AND SPEAKERS.</p>
-            <p style="margin-top: 40px;">BASED IN VENICE, LA.</p>
+            <p style="margin-top: 20px;">ROAD-LEGAL, MISCOOTSI CAN BE DELIVERED TO YOU OR ROCK UP TO YOUR EVENT. OUTFITTED WITH BATTERY POWER, STORAGE, AND SPEAKERS.</p>
+            <p style="margin-top: 40px; color: var(--primary-blue);">BASED IN VENICE, LA.</p>
         </div>
     </section>
+
+    <footer>
+        <div class="footer-links">
+            <a href="mailto:hi@miscootsi.com">HI@MISCOOTSI.COM</a>
+            <span>|</span>
+            <a href="https://instagram.com/miscootsi" target="_blank">@MISCOOTSI</a>
+        </div>
+    </footer>
 
 </body>
 </html>
