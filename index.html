@@ -24,25 +24,22 @@
         }
 
         /* --- Hero & Form Section --- */
-        .hero-container {
-            display: flex;
-            flex-direction: row;
-            min-height: 90vh;
-            background: url('miscootsi1.jpg') center/cover no-repeat;
+       .hero-container {
+        position: relative;
+        min-height: 95vh;
+        background: url('hero-shot.jpg') center/cover no-repeat;
+        display: flex;
+        align-items: center; 
+        justify-content: center;
+        padding: 20px;
         }
 
         .hero-overlay {
-            flex: 1;
-            background: rgba(0,0,0,0.15);
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            padding: 40px;
-            text-align: center;
-            color: white;
+        text-align: center;
+        color: white;
+        z-index: 1; 
+        margin-bottom: 300px; 
         }
-
         .hero-overlay h1 {
             font-family: 'Shrikhand', cursive;
             font-size: clamp(4.5rem, 10vw, 8rem);
@@ -61,14 +58,16 @@
         }
 
         .form-sidebar {
-            width: 420px;
+            position: absolute;
+            bottom: 50px;
+            right: 50px;
+            width: 380px;
             background: white;
-            padding: 60px 40px;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            box-shadow: -5px 0 15px rgba(0,0,0,0.05);
-        }
+            padding: 40px;
+            border-radius: 25px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+            z-index: 10;
+}
 
         .form-sidebar h2 {
             font-family: 'Urbanist', sans-serif;
@@ -223,12 +222,26 @@
 
         /* --- Responsive Design --- */
         @media (max-width: 900px) {
-            .hero-container { flex-direction: column; }
-            .form-sidebar { width: 100%; box-sizing: border-box; padding: 40px 20px; }
+            .hero-container {
+            flex-direction: column;
+            height: auto;
+            padding: 40px 0;
+            }
+            .hero-overlay {
+            margin-bottom: 40px;
+            }
+           .form-sidebar {
+            position: relative; /* Back to normal position for mobile */
+            bottom: 0;
+            right: 0;
+            width: 90%;
+            margin: 0 auto;
             .grid-3 { grid-template-columns: 1fr; }
             .hero-overlay { min-height: 400px; }
             .main-img { border-width: 6px; }
             .grid-img { border-width: 6px; }
+    }
+}
         }
     </style>
 </head>
