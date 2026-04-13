@@ -249,39 +249,44 @@
             <p>EV PIAGGIO APE FOR EVENTS</p>
         </div>
 
-        <div class="form-sidebar">
-            <h2>BOOK MISCOOTSI</h2>
-            <form action="https://formspree.io/f/xpqovgkp" method="POST">
-                <div class="form-group">
-                    <label>NAME</label>
-                    <input type="text" name="name" placeholder="Full Name" required>
-                </div>
-                
-                <div class="form-group">
-                    <label>EMAIL ADDRESS</label>
-                    <input type="email" name="email" placeholder="email@example.com" required>
-                </div>
-                
-                <div class="form-group">
-                    <label>RENTAL DATE</label>
-                    <input type="date" name="date" required>
-                </div>
+       <div class="form-sidebar" id="form-container">
+    <div id="form-content">
+        <h2>BOOK MISCOOTSI</h2>
+        <form id="miscootsi-form">
+            <div class="form-group">
+                <label>NAME</label>
+                <input type="text" name="name" placeholder="Full Name" required>
+            </div>
+            
+            <div class="form-group">
+                <label>EMAIL ADDRESS</label>
+                <input type="email" name="email" placeholder="email@example.com" required>
+            </div>
+            
+            <div class="form-group">
+                <label>RENTAL DATE</label>
+                <input type="date" name="date" required>
+            </div>
 
-                <div class="form-group">
-                    <label>EVENT TYPE</label>
-                    <select name="event_type" required>
-                        <option value="" disabled selected>Select an option...</option>
-                        <option value="Catering">Catering</option>
-                        <option value="Brand Activation">Brand Activation</option>
-                        <option value="Product Sales">Product Sales</option>
-                        <option value="Private Event">Private Event</option>
-                    </select>
-                </div>
+            <div class="form-group">
+                <label>EVENT TYPE</label>
+                <select name="event_type" required>
+                    <option value="" disabled selected>Select an option...</option>
+                    <option value="Catering">Catering</option>
+                    <option value="Brand Activation">Brand Activation</option>
+                    <option value="Product Sales">Product Sales</option>
+                    <option value="Private Event">Private Event</option>
+                </select>
+            </div>
 
-                <input type="text" name="_gotcha" style="display:none">
-                <button type="submit" class="submit-btn">Send Rental Request</button>
-            </form>
-        </div>
+            <button type="submit" class="submit-btn" id="submit-button">Send Rental Request</button>
+        </form>
+    </div>
+    <div id="success-message" style="display:none; text-align:center; padding: 40px 0;">
+        <h2 style="color: var(--primary-blue); font-family: 'Shrikhand', cursive;">Thanks!</h2>
+        <p style="font-weight: 700; font-size: 1.2rem;">We'll be in touch soon.</p>
+    </div>
+</div>
     </section>
 
     <section class="gallery-section">
@@ -308,6 +313,44 @@
         <a href="mailto:beep@miscootsi.com">BEEP@MISCOOTSI.COM</a> | 
         <a href="https://instagram.com/miscootsi" target="_blank">@MISCOOTSI</a>
     </footer>
+
+    <script>
+    const form = document.getElementById("miscootsi-form");
+    const formContent = document.getElementById("form-content");
+    const successMessage = document.getElementById("success-message");
+    const submitButton = document.getElementById("submit-button");
+
+    form.addEventListener("submit", function(e) {
+        e.preventDefault(); // Stop the page from redirecting
+        
+        submitButton.disabled = true;
+        submitButton.innerText = "Sending...";
+
+        const data = new FormData(form);
+        
+        fetch("https://formspree.io/f/xpqovgkp", {
+            method: "POST",
+            body: data,
+            headers: {
+                'Accept': 'application/json'
+            }
+        }).then(response => {
+            if (response.ok) {
+                // Hide the form and show the success message
+                formContent.style.display = "none";
+                successMessage.style.display = "block";
+            } else {
+                alert("Oops! There was a problem. Please try again.");
+                submitButton.disabled = false;
+                submitButton.innerText = "Send Rental Request";
+            }
+        }).catch(error => {
+            alert("Error: " + error);
+            submitButton.disabled = false;
+            submitButton.innerText = "Send Rental Request";
+        });
+    });
+</script>
 
 </body>
 </html>
