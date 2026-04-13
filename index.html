@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Miscootsi | EV Piaggio Ape Events</title>
-    <link href="https://fonts.googleapis.com/css2?family=Urbanist&family=Shrikhand&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Urbanist:wght@400;700&family=Shrikhand&display=swap" rel="stylesheet">
     <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 24 24%22 fill=%22%2364a6bd%22><path d=%22M18 17.5c-.83 0-1.5.67-1.5 1.5s.67 1.5 1.5 1.5 1.5-.67 1.5-1.5-.67-1.5-1.5-1.5ZM7 17.5c-.83 0-1.5.67-1.5 1.5s.67 1.5 1.5 1.5 1.5-.67 1.5-1.5-.67-1.5-1.5-1.5ZM18 8H15V4H3v11h2c0 1.66 1.34 3 3 3s3-1.34 3-3h3c0 1.66 1.34 3 3 3s3-1.34 3-3h2v-5l-3-2Zm-1 .5 2.25 2.5H15V8.5h2Zm-5.5 1.5-2 3H12l-1 3 3-4h-2l2-2h-2.5Z%22/></svg>">
     <style>
         :root {
@@ -21,69 +21,76 @@
             color: var(--text-dark);
             background-color: #fff;
             line-height: 1.6;
+            overflow-x: hidden;
         }
 
-        /* --- Hero & Form Section --- */
-       .hero-container {
-        position: relative;
-        min-height: 95vh;
-        background: url('hero-shot.jpg') center/cover no-repeat;
-        display: flex;
-        align-items: center; 
-        justify-content: center;
-        padding: 20px;
+        /* --- Hero Section --- */
+        .hero-container {
+            position: relative;
+            min-height: 100vh;
+            /* Ensure hero-shot.jpg is uploaded to the same folder on GitHub */
+            background: linear-gradient(rgba(0,0,0,0.1), rgba(0,0,0,0.1)), url('hero-shot.jpg') center/cover no-repeat;
+            display: flex;
+            align-items: center;
+            padding: 0 5%;
+            box-sizing: border-box;
         }
 
         .hero-overlay {
-        text-align: center;
-        color: white;
-        z-index: 1; 
-        margin-bottom: 300px; 
+            max-width: 600px;
+            color: white;
+            z-index: 1;
+            text-align: left; /* Align text left to balance the form on the right */
         }
+
         .hero-overlay h1 {
             font-family: 'Shrikhand', cursive;
-            font-size: clamp(4.5rem, 10vw, 8rem);
+            font-size: clamp(4rem, 10vw, 8rem);
             margin: 0;
-            letter-spacing: 0.05em;
-            font-color: #fff;
+            letter-spacing: 0.02em;
+            line-height: 1;
         }
 
         .hero-overlay p {
             font-family: 'Urbanist', sans-serif;
-            font-size: clamp(1.2rem, 3vw, 1.8rem);
+            font-weight: 700;
+            font-size: clamp(1rem, 2.5vw, 1.5rem);
             letter-spacing: 4px;
-            margin-top: 15px;
+            margin-top: 10px;
             border-top: 2px solid white;
+            display: inline-block;
             padding-top: 10px;
         }
 
+        /* --- Floating Form --- */
         .form-sidebar {
             position: absolute;
             bottom: 50px;
             right: 50px;
-            width: 380px;
+            width: 400px;
             background: white;
             padding: 40px;
             border-radius: 25px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+            box-shadow: 0 15px 45px rgba(0,0,0,0.2);
             z-index: 10;
-}
+            box-sizing: border-box;
+        }
 
         .form-sidebar h2 {
             font-family: 'Urbanist', sans-serif;
-            font-size: 2rem;
+            font-weight: 700;
+            font-size: 1.8rem;
+            margin-top: 0;
             margin-bottom: 25px;
             color: var(--primary-blue);
         }
 
-        .form-group {
-            margin-bottom: 20px;
-        }
+        .form-group { margin-bottom: 15px; }
 
         label {
-            font-family: 'Urbanist', sans-serif;
-            font-size: 0.9rem;
-            margin-bottom: 6px;
+            font-weight: 700;
+            font-size: 0.8rem;
+            margin-bottom: 5px;
             display: block;
             letter-spacing: 1px;
         }
@@ -94,70 +101,64 @@
         select {
             width: 100%;
             padding: 12px;
-            border: 1px solid #ddd;
+            border: 1px solid #eee;
             border-radius: 10px;
             font-family: 'Urbanist', sans-serif;
             font-size: .9rem;
             box-sizing: border-box;
             background-color: var(--input-bg);
-            color: #666;
+            color: #444;
+            outline: none;
             -webkit-appearance: none;
-            -moz-appearance: none;
             appearance: none;
-                }
+        }
 
-/* 2. SPECIFIC TO THE DROPDOWN (Adds the chevron and extra right padding) */
         select {
-            padding-right: 40px; /* Extra space so text doesn't hit the arrow */
+            padding-right: 40px;
             background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none' stroke='%23666' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='m6 9 6 6 6-6'/%3E%3C/svg%3E");
             background-repeat: no-repeat;
             background-position: right 15px center;
-            background-size: 16px;
+            background-size: 14px;
             cursor: pointer;
-                }
+        }
 
-/* 3. SPECIFIC TO DATE FIELD (Restores the calendar icon for Chrome/Safari) */
-        input[type="date"]::-webkit-calendar-picker-indicator {
-            display: block;
-        cursor: pointer;
-            }
-            }
-
+        /* Button Styling */
         .submit-btn {
             background-color: var(--primary-blue);
             color: white;
             border: none;
-            padding: 18px;
+            padding: 16px;
             font-family: 'Urbanist', sans-serif;
-            font-size: 1.3rem;
+            font-weight: 700;
+            font-size: 1rem;
             border-radius: 10px;
-            letter-spacing: 2px;
+            letter-spacing: 1px;
             cursor: pointer;
             width: 100%;
             margin-top: 10px;
-            transition: background 0.3s ease;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
             -webkit-appearance: none;
-            -moz-appearance: none; 
-            appearance: none;
         }
 
-        .submit-btn:hover { background-color: #2444F9; }
+        .submit-btn:hover {
+            background-color: #1a8ad4;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(50, 159, 236, 0.3);
+        }
 
-        /* --- Gallery Section --- */
+        /* --- Gallery & Sections --- */
         .gallery-section {
-            max-width: 1100px;
-            margin: 60px auto;
+            max-width: 1200px;
+            margin: 80px auto;
             padding: 0 20px;
         }
 
         .main-img {
             width: 100%;
-            height: auto;
-            aspect-ratio: 16/9;
-            background: #eee;
-            border: 12px solid var(--primary-blue);
+            border-radius: 20px;
+            border: 10px solid var(--primary-blue);
             margin-bottom: 20px;
-            object-fit: cover;
             box-sizing: border-box;
         }
 
@@ -170,78 +171,58 @@
         .grid-img {
             width: 100%;
             aspect-ratio: 1/1;
-            background: #eee;
-            border: 8px solid var(--primary-blue);
             object-fit: cover;
+            border-radius: 15px;
+            border: 6px solid var(--primary-blue);
             box-sizing: border-box;
         }
 
-        /* --- Info Section --- */
         .info-section {
             text-align: center;
-            padding: 80px 20px;
+            padding: 100px 20px;
             background-color: var(--bg-gray);
         }
 
         .info-section h2 {
             font-family: 'Shrikhand', cursive;
-            font-size: 3.5rem;
-            margin-bottom: 30px;
+            font-size: 3rem;
+            margin-bottom: 20px;
         }
 
         .info-content {
-            max-width: 800px;
+            max-width: 700px;
             margin: 0 auto;
-            font-family: 'Urbanist', sans-serif;
             font-size: 1.2rem;
-            line-height: 1.4;
-            color: #444;
+            color: #555;
         }
 
-        /* --- Footer --- */
         footer {
-            background-color: white;
-            padding: 60px 20px;
+            padding: 40px;
             text-align: center;
-            border-top: 1px solid #eee;
-        }
-
-        .footer-links {
-            font-family: 'Urbanist', sans-serif;
-            font-size: 1rem;
+            font-weight: 700;
             letter-spacing: 1px;
         }
 
-        .footer-links a {
-            color: var(--primary-blue);
-            text-decoration: none;
-            margin: 0 15px;
-        }
+        footer a { color: var(--primary-blue); text-decoration: none; margin: 0 15px; }
 
-        .footer-links a:hover { text-decoration: underline; }
-
-        /* --- Responsive Design --- */
+        /* --- Responsive --- */
         @media (max-width: 900px) {
             .hero-container {
-            flex-direction: column;
-            height: auto;
-            padding: 40px 0;
+                flex-direction: column;
+                justify-content: center;
+                text-align: center;
+                padding-top: 80px;
             }
-            .hero-overlay {
-            margin-bottom: 40px;
+            .hero-overlay { text-align: center; margin-bottom: 40px; }
+            .form-sidebar {
+                position: relative;
+                bottom: 0;
+                right: 0;
+                width: 100%;
+                max-width: 400px;
+                margin-bottom: 40px;
             }
-           .form-sidebar {
-            position: relative; /* Back to normal position for mobile */
-            bottom: 0;
-            right: 0;
-            width: 90%;
-            margin: 0 auto;
             .grid-3 { grid-template-columns: 1fr; }
-            .hero-overlay { min-height: 400px; }
-            .main-img { border-width: 6px; }
-            .grid-img { border-width: 6px; }
-    }
-}
         }
     </style>
 </head>
@@ -258,7 +239,7 @@
             <form action="https://formspree.io/f/xpqovgkp" method="POST">
                 <div class="form-group">
                     <label>NAME</label>
-                    <input type="text" name="full_name" placeholder="Full Name" required>
+                    <input type="text" name="name" placeholder="Full Name" required>
                 </div>
                 
                 <div class="form-group">
@@ -268,7 +249,7 @@
                 
                 <div class="form-group">
                     <label>RENTAL DATE</label>
-                    <input type="date" name="rental_date" required>
+                    <input type="date" name="date" required>
                 </div>
 
                 <div class="form-group">
@@ -277,14 +258,13 @@
                         <option value="" disabled selected>Select an option...</option>
                         <option value="Catering">Catering</option>
                         <option value="Brand Activation">Brand Activation</option>
-                        <option value="Merchandise Sales">Product Sales</option>
+                        <option value="Product Sales">Product Sales</option>
                         <option value="Private Event">Private Event</option>
                     </select>
                 </div>
 
                 <input type="text" name="_gotcha" style="display:none">
-
-                <button type="submit" class="submit-btn">SEND RENTAL REQUEST</button>
+                <button type="submit" class="submit-btn">Send Rental Request</button>
             </form>
         </div>
     </section>
@@ -301,18 +281,14 @@
     <section class="info-section">
         <h2>Book Miscootsi.</h2>
         <div class="info-content">
-            <p>Miscootsi is a vintage 19XX Piaggio Ape. Ape means "bee" in Italian — because these little trucks can be put to work! This Ape has been lovingly restored and converted to Electric. Having made the journey from Sicily to the Venice of America, Miscootsi is ready to scoot into your next event.</p>
-            <p style="margin-top: 20px;">Miscootsi can be delivered to you, or you can rock up to your event. Outfitted with battery power and storage.</p>
-            <p style="margin-top: 40px; color: var(--primary-blue);">Based in Venice, LA.</p>
+            <p>Miscootsi is a vintage Piaggio Ape. Ape means "bee" in Italian — because these little trucks are built to work! Lovingly restored and converted to Electric, Miscootsi is ready to scoot into your next event.</p>
+            <p style="margin-top: 20px;">Based in Venice, LA.</p>
         </div>
     </section>
 
     <footer>
-        <div class="footer-links">
-            <a href="mailto:beep@miscootsi.com">BEEP@MISCOOTSI.COM</a>
-            <span>|</span>
-            <a href="https://instagram.com/miscootsi" target="_blank">@MISCOOTSI</a>
-        </div>
+        <a href="mailto:beep@miscootsi.com">BEEP@MISCOOTSI.COM</a> | 
+        <a href="https://instagram.com/miscootsi" target="_blank">@MISCOOTSI</a>
     </footer>
 
 </body>
